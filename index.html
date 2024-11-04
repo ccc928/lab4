@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的英雄學院角色介紹</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1E3A8A; /* 深藍色背景 */
+            color: #FFFFFF;
+        }
+        header {
+            background-color: #FFD700; /* 金黃色 */
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #1E3A8A; /* 深藍色文字 */
+        }
+        nav {
+            background-color: #0D9488; /* 綠色 */
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #FFFFFF;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        nav a:hover {
+            color: #FFD700;
+        }
+        .container {
+            padding: 20px;
+        }
+        .character {
+            background-color: #2563EB; /* 藍色區塊 */
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            opacity: 0; /* 初始設為透明 */
+            margin-left: -100px; /* 偏移初始位置 */
+            transition: all 0.8s ease; /* 預設動畫效果 */
+        }
+        .character img {
+            max-width: 300px; /* 調整圖片最大寬度為300px */
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-right: 20px;
+            transition: transform 0.3s;
+        }
+        .character img:hover {
+            transform: scale(1.05);
+        }
+        .character-info {
+            flex: 1;
+            min-width: 200px;
+        }
+        .character h2 {
+            color: #FFD700; /* 金黃色 */
+            margin-top: 0;
+        }
+        .character p {
+            line-height: 1.6;
+        }
+        footer {
+            background-color: #0D9488; /* 綠色 */
+            text-align: center;
+            padding: 10px;
+            color: #FFFFFF;
+            width: 100%;
+        }
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .character {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .character img {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+        /* 關於我們頁面樣式 */
+        #about {
+            background-color: #2563EB; /* 藍色區塊 */
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        #about h2 {
+            color: #FFD700; /* 金黃色 */
+            margin-top: 0;
+        }
+        #about p {
+            line-height: 1.6;
+        }
+        #about a {
+            color: #FFD700;
+            text-decoration: underline;
+        }
+        /* 返回頂部按鈕樣式 */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 10px 20px;
+            background-color: #FFD700;
+            color: #1E3A8A;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 1. 平滑滾動效果
+            $("nav a").click(function(event) {
+                event.preventDefault();
+                var target = $(this).attr("href");
+                $("html, body").animate({
+                    scrollTop: $(target).offset().top
+                }, 800);
+            });
+
+            // 2. 角色卡片滑入效果
+            $(window).scroll(function() {
+                $(".character").each(function() {
+                    var position = $(this).offset().top;
+                    var scrollTop = $(window).scrollTop();
+                    var windowHeight = $(window).height();
+
+                    if (scrollTop + windowHeight > position + 100) {
+                        $(this).css({opacity: 1, marginLeft: 0});
+                    }
+                });
+            });
+
+            // 3. 返回頂部按鈕
+            $("body").append('<button id="backToTop">返回頂部</button>');
+
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 300) {
+                    $("#backToTop").fadeIn();
+                } else {
+                    $("#backToTop").fadeOut();
+                }
+            });
+
+            $("#backToTop").click(function() {
+                $("html, body").animate({scrollTop: 0}, 800);
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>我的英雄學院角色介紹</h1>
+    </header>
+    <nav>
+        <a href="#characters">角色介紹</a>
+        <a href="#about">關於我的英雄學院</a>
+    </nav>
+    <div class="container" id="home">
+        <h2 style="color: #FFD700; text-align: center;">歡迎來到我的英雄學院角色介紹網站！</h2>
+    </div>
+    <div class="container" id="characters">
+        <!-- 角色1 -->
+        <div class="character">
+            <img src="https://i.imgur.com/xnyo8dd.jpeg" alt="綠谷出久">
+            <div class="character-info">
+                <h2>綠谷出久</h2>
+                <p>綠谷出久，又稱“Deku”，是本作的主角，擁有傳說中的“One For All”能力，致力於成為最偉大的英雄。</p>
+            </div>
+        </div>
+        <!-- 角色2 -->
+        <div class="character">
+            <img src="https://news-cdn.para-daily.com/wp-content/uploads/2024/07/19162711/187454_0_11zon.webp" alt="爆豪勝己">
+            <div class="character-info">
+                <h2>爆豪勝己</h2>
+                <p>爆豪勝己是綠谷的同班同學，擁有強大的爆炸能力，性格火爆但內心渴望被認可，目標是成為最強的英雄。</p>
+            </div>
+        </div>
+        <!-- 角色3 -->
+        <div class="character">
+            <img src="https://img03.sogoucdn.com/v2/thumb/retype_exclude_gif/ext/auto/crop/xy/ai/w/368/h/368/t/0?appid=200698&url=https://pic.baike.soso.com/ugc/baikepic2/0/20240508234859-370077740_jpeg_564_564_137737.jpg/0" alt="轟焦凍">
+            <div class="character-info">
+                <h2>轟焦凍</h2>
+                <p>轟焦凍擁有半火焰半冰凍的能力，被稱為“Shoto”，他內心掙扎於雙方能力的平衡，追求成為一名冷靜且強大的英雄。</p>
+            </div>
+        </div>
+        <!-- 角色4 -->
+        <div class="character">
+            <img src="https://static.wikia.nocookie.net/deathbattle/images/5/5e/Portrait.allmight.png/revision/latest/thumbnail/width/360/height/450?cb=20240702111109" alt="歐爾麥特">
+            <div class="character-info">
+                <h2>歐爾麥特</h2>
+                <p>歐爾麥特是傳說中的英雄，被譽為“和平的象徵”，擁有強大的力量和不屈的精神，致力於傳授和激勵下一代英雄。</p>
+            </div>
+        </div>
+        <!-- 角色5 -->
+        <div class="character">
+            <img src="https://i.imgur.com/galtiUf.jpg" alt="霍克斯">
+            <div class="character-info">
+                <h2>霍克斯</h2>
+                <p>霍克斯是聯合英雄，擁有飛行和強大鷹爪能力，性格冷靜且狡猾，對正義有著獨特的看法。</p>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="about">
+        <h2>關於我的英雄學院</h2>
+        <p>《我的英雄學院》是由堀越耕平創作的日本漫畫，故事講述了一個擁有各種超能力的世界，主角綠谷出久立志成為最偉大的英雄。在這裡，您可以了解更多關於作品中的角色。</p>
+        <p>想了解更多？<a href="https://heroaca.com/" target="_blank">官方網站</a></p>
+    </div>
+    <footer>
+        <p>&copy; 2024 我的英雄學院角色介紹. 版權所有.</p>
+    </footer>
+</body>
+</html>
